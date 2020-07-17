@@ -1,5 +1,8 @@
 <p>submission-list works!</p>
 
-{{ submissions }}
-
-<button (click)="getSubmissions()">get subs</button>
+<ul *ngIf="submissions$ | async as submissions else noData">
+    <li *ngFor="let submission of submissions">
+        {{submission.name}}
+    </li> 
+</ul>
+<ng-template #noData>No Data Available</ng-template>
