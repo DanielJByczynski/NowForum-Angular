@@ -66,7 +66,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "now-forum-angular:build"
+            "browserTarget": "now-forum-angular:build",            
+            "proxyConfig": "src/proxy.conf.json"
           },
           "configurations": {
             "production": {
