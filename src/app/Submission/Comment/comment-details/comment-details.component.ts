@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CommentData } from '../comment-data';
 
 @Component({
   selector: 'app-comment-details',
@@ -6,12 +7,14 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./comment-details.component.scss']
 })
 export class CommentDetailsComponent implements OnInit {
-  @Input() comment: Comment;
-
+  @Input() commentData: CommentData;
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.comment)
+  }
+
+  getCommentMessage() {
+    return this.commentData.commentMessage;
   }
 
 }

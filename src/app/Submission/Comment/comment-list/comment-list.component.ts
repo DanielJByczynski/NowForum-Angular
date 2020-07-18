@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { FormBuilder } from '@angular/forms';
+import { CommentData } from '../comment-data';
+import { HttpService } from 'src/app/http.service';
 
 @Component({
   selector: 'app-comment-list',
@@ -9,19 +11,29 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommentListComponent implements OnInit {
   @Input() submissionId: number;
-  comments$: Observable<Comment[]>;
+  comments$: Observable<CommentData[]>;
+  commentForm;
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private httpService: HttpService,
+    private formBuilder: FormBuilder
+    ) {
+    this.commentForm = this.formBuilder.group({
+      commentMessage: ''
+    });
+  }
 
   ngOnInit(): void {    
     this.getComments();
   }
 
   getComments() {
-    this.comments$ = this.http.get<Comment[]>("https://localhost:5001/api/Comments/Submission/" + this.submissionId, {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},observe: 'body', responseType: 'json'});
+    this.comments$ = this.httpService.getCommentsBySubmissionId(this.submissionId);
   }
 
-  addComment() {
+  addComment(commentData) {
+    //this.http.post<CommentData[]>("https://localhost:5001/api/Comments/", {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}, observe: 'body', responseType: 'json'});
     
+    this.commentForm.reset();
   }
 }

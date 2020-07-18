@@ -8,6 +8,8 @@ import { SubmissionListComponent } from './Submission/submission-list/submission
 import { SubmissionDetailsComponent } from './Submission/submission-details/submission-details.component';
 import { CommentListComponent } from './Submission/Comment/comment-list/comment-list.component';
 import { CommentDetailsComponent } from './Submission/Comment/comment-details/comment-details.component';
+import { FormBuilder } from '@angular/forms';
+import { HttpService } from './http.service';
 
 
 @NgModule({
@@ -23,7 +25,10 @@ import { CommentDetailsComponent } from './Submission/Comment/comment-details/co
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [    
+    HttpService,
+    FormBuilder
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
