@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Submission } from '../submission';
 import { FormBuilder } from '@angular/forms';
 import { HttpService } from 'src/app/http.service';
+import { $ } from 'protractor';
 @Component({
   selector: 'app-submission-list',
   templateUrl: './submission-list.component.html',
@@ -24,13 +25,14 @@ export class SubmissionListComponent implements OnInit {
 
   ngOnInit(): void {
     this.getSubmissions();
-  }  
+  }
 
   getSubmissions() {
     this.submissions$ = this.httpService.getSubmissions();
   }
 
   addSubmission(submissionData) {
-    this.httpService.postSubmission(submissionData)
+    this.httpService.postSubmission(submissionData);
   }
+
 }
