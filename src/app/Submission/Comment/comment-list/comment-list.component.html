@@ -1,0 +1,17 @@
+<ul *ngIf="comments$ | async as commentData else noSubmissions" class="list-group">
+    <li *ngFor="let commentData of commentData" class="submission-list-item list-group-item">
+        <app-comment-details [commentData]="commentData"></app-comment-details>
+    </li>
+</ul>
+<ng-template #noSubmissions>No comments yet...</ng-template>
+
+<form [formGroup]="commentForm" (ngSubmit)="addComment(commentForm.value)" id="addComment" class="form-group"
+    style="display: block;">
+    <div class="card-body">
+        <div>
+            <label for="comment-message">Add Comment</label>
+            <textarea id="comment-message" placeholder="Comment" formControlName="commentMessage" class="form-control"></textarea>
+        </div>
+        <button type="submit" value="Send" class="btn btn-primary m-2">Send</button>
+    </div>
+</form>
