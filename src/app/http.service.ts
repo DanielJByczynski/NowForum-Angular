@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { AppSettings } from './app.settings';
 import { Injectable } from '@angular/core';
 import { Submission } from './Submission/submission';
+import { CommentData } from './Submission/Comment/comment-data';
+
 
 @Injectable()
 export class HttpService {
@@ -11,7 +13,6 @@ export class HttpService {
 
     /* === GET Requests === */
     getHttp(endPoint) {
-        console.log(endPoint)
         return this.http.get<any>(
             AppSettings.apiHost + endPoint,
             {
@@ -39,10 +40,11 @@ export class HttpService {
             AppSettings.apiHost + endPoint,
             body,
             {
-                headers: { 
-                    'Accept': 'application/json', 
+                headers: {
+                    'Accept': 'application/json',
                     'Access-Control-Allow-Origin': '*',
-                    'Content-Type': 'application/json; charset=utf8' }
+                    'Content-Type': 'application/json; charset=utf8'
+                }
             });
     }
 
@@ -57,13 +59,36 @@ export class HttpService {
         );
     }
 
-    postComment(submissionId: number, message: string) {
+    postComment(commentData: CommentData) {
         return this.postHttp(
             JSON.stringify({
-                submissionId: Number(submissionId),
-                commentMessage: message
+                submissionId: Number(commentData.submissionId),
+                commentMessage: commentData.commentMessage
             }),
             AppSettings.postCommentEndPoint
         );
+    }
+
+    /* === PUT Requests === */
+    putHttp(body, endPoint) {
+        return this.http.put<any>(
+            AppSettings.apiHost + endPoint,
+            body,
+            {
+                headers: {
+                    'Accept': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Content-Type': 'application/json; charset=utf8'
+                }
+            }
+        )
+    };
+
+    putSubmission(submissionData: Submission) {
+
+    }
+
+    putComment(commentData: CommentData) {
+
     }
 }

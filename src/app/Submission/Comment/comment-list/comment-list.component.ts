@@ -31,10 +31,16 @@ export class CommentListComponent implements OnInit {
     this.comments$ = this.httpService.getCommentsBySubmissionId(this.submissionId);
   }
 
-  addComment(commentData) {
-    this.httpService.postComment(this.submissionId, commentData.commentMessage).subscribe(() => {
+  addComment(commentData: CommentData) {
+    /* Set comment's SubmissionId */
+    commentData.submissionId = this.submissionId;
+
+    /* Make POST Request */
+    this.httpService.postComment(commentData).subscribe(() => {
       this.getComments();
     });
+
+    /* Clear the comment form */
     this.commentForm.reset();
   }
 }
