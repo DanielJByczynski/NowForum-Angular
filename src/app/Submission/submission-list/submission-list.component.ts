@@ -31,6 +31,4 @@ export class SubmissionListComponent implements OnInit {
     this.submissions$ = this.http.get<Submission[]>("https://localhost:5001/api/submissions", {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},observe: 'body', responseType: 'json'});
   }
 
-
-
 }

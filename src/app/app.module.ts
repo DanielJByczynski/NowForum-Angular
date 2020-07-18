@@ -9,6 +9,7 @@ import { SubmissionDetailsComponent } from './Submission/submission-details/subm
 import { CommentListComponent } from './Submission/Comment/comment-list/comment-list.component';
 import { CommentDetailsComponent } from './Submission/Comment/comment-details/comment-details.component';
 import { FormBuilder } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpService } from './http.service';
 
 
@@ -23,7 +24,8 @@ import { HttpService } from './http.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [    
     HttpService,

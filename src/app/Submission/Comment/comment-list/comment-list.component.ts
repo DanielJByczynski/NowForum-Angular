@@ -32,8 +32,7 @@ export class CommentListComponent implements OnInit {
   }
 
   addComment(commentData) {
-    //this.http.post<CommentData[]>("https://localhost:5001/api/Comments/", {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'}, observe: 'body', responseType: 'json'});
-    
+    this.httpService.postComment(this.submissionId, commentData.commentMessage)
     this.commentForm.reset();
   }
 }
