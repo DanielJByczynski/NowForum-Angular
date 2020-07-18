@@ -1,34 +1,36 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Observable } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { Submission } from '../submission';
+import { FormBuilder } from '@angular/forms';
+import { HttpService } from 'src/app/http.service';
 @Component({
   selector: 'app-submission-list',
   templateUrl: './submission-list.component.html',
   styleUrls: ['./submission-list.component.scss']
 })
 export class SubmissionListComponent implements OnInit {
-
   submissions$: Observable<Submission[]>;
+  submissionForm;
 
-  constructor(private http:HttpClient) { }
+  constructor(
+    private httpService: HttpService,
+    private formBuilder: FormBuilder) {
+    this.submissionForm = this.formBuilder.group({
+      name: '',
+      imageUrl: '',
+      message: ''
+    });
+  }
 
   ngOnInit(): void {
     this.getSubmissions();
-  }
-
-  options: {
-    headers?: HttpHeaders | {[header: string]: string | string[]},
-    observe?: 'body' | 'events' | 'response',
-    params?: HttpParams|{[param: string]: string | string[]},
-    reportProgress?: boolean,
-    responseType?: 'arraybuffer'|'blob'|'json'|'text',
-    withCredentials?: boolean,
-  }
+  }  
 
   getSubmissions() {
-    this.submissions$ = this.http.get<Submission[]>("https://localhost:5001/api/submissions", {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},observe: 'body', responseType: 'json'});
+    this.submissions$ = this.httpService.getSubmissions();
   }
 
+  addSubmission(submissionData) {
+    this.httpService.postSubmission(submissionData)
+  }
 }

@@ -16,5 +16,4 @@ export class CommentDetailsComponent implements OnInit {
   getCommentMessage() {
     return this.commentData.commentMessage;
   }
-
 }
