@@ -32,7 +32,9 @@ export class SubmissionListComponent implements OnInit {
   }
 
   addSubmission(submissionData) {
-    this.httpService.postSubmission(submissionData);
+    this.httpService.postSubmission(submissionData).subscribe(() => {
+      this.getSubmissions();
+    });
   }
 
 }

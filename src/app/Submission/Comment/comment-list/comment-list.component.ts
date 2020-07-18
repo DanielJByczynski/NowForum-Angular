@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, VirtualTimeScheduler } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
 import { CommentData } from '../comment-data';
 import { HttpService } from 'src/app/http.service';
@@ -32,7 +32,9 @@ export class CommentListComponent implements OnInit {
   }
 
   addComment(commentData) {
-    this.httpService.postComment(this.submissionId, commentData.commentMessage)
+    this.httpService.postComment(this.submissionId, commentData.commentMessage).subscribe(() => {
+      this.getComments();
+    });
     this.commentForm.reset();
   }
 }
