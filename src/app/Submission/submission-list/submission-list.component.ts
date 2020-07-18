@@ -15,7 +15,6 @@ export class SubmissionListComponent implements OnInit {
   constructor(private http:HttpClient) { }
 
   ngOnInit(): void {
-    console.log("run")
     this.getSubmissions();
   }
 
@@ -31,6 +30,7 @@ export class SubmissionListComponent implements OnInit {
   getSubmissions() {
     this.submissions$ = this.http.get<Submission[]>("https://localhost:5001/api/submissions", {headers: {'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},observe: 'body', responseType: 'json'});
   }
+
 
 
 }

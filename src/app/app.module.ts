@@ -5,12 +5,18 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SubmissionListComponent } from './Submission/submission-list/submission-list.component';
+import { SubmissionDetailsComponent } from './Submission/submission-details/submission-details.component';
+import { CommentListComponent } from './Submission/Comment/comment-list/comment-list.component';
+import { CommentDetailsComponent } from './Submission/Comment/comment-details/comment-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SubmissionListComponent
+    SubmissionListComponent,
+    SubmissionDetailsComponent,
+    CommentListComponent,
+    CommentDetailsComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,23 @@
+<div class="card">
+    <img *ngIf="submission.imageUrl" class="card-img-top" src={{submission.imageUrl}} alt="Card image cap">
+    <div class="card-body">
+        <h3>
+            {{submission.name}}
+        </h3>
+        <p>
+            {{submission.message}}
+        </p>
+    </div>
+
+    <div *ngIf="displayCommentsList" class="card-body">
+        <app-comment-list submissionId={{submission.id}}></app-comment-list>
+    </div>
+
+    <div class="card-footer">
+        <p class="float-left">
+            Posted {{ dateFromUTCString(submission.timeStamp) }}
+        </p>
+        
+        <button type="button" (click)="toggleCommentsList()" class="btn btn-sm btn-outline-secondary float-right">{{ displayCommentsListText }}</button>
+    </div>
+</div>

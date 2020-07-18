@@ -1,28 +1,6 @@
-<ul *ngIf="submissions$ | async as submissions else noData">
-    <li *ngFor="let submission of submissions">
-
-        <div class="card m-3">
-            <div class="card-header">
-                <p>
-                    {{submission.timeStamp}}
-                </p>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <img class="card-img-top" src={{submission.imageUrl}} alt="Card image cap"></div>
-                    <div class="col-md-8">
-                        <h3>
-                            {{submission.name}}
-                        </h3>
-                        <p>
-                            {{submission.message}}
-                        </p>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </li> 
+<ul *ngIf="submissions$ | async as submissions else noData" class="submission-list">
+    <li *ngFor="let submission of submissions" class="submission-list-item">
+        <app-submission-details [submission]="submission"></app-submission-details>
+    </li>
 </ul>
 <ng-template #noData>No Data Available</ng-template>
