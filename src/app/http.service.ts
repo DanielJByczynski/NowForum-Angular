@@ -43,7 +43,7 @@ export class HttpService {
                     'Accept': 'application/json', 
                     'Access-Control-Allow-Origin': '*',
                     'Content-Type': 'application/json; charset=utf8' }
-            }).subscribe();
+            });
     }
 
     postSubmission(submissionData: Submission) {

@@ -19,7 +19,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">New Submission</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="newSubmissionModal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -39,7 +39,7 @@
                         <label for="submission-message">Message</label>
                         <textarea id="message" placeholder="Comment" formControlName="message"
                             class="form-control"></textarea>
-                        <button type="submit" value="Send"
+                        <button type="submit" value="Send" onclick="$('#newSubmissionModal').modal('hide');"
                             class="btn btn-primary btn-block my-4 float-right">Send</button>
                     </div>
                 </form>
