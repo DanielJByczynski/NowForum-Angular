@@ -1,6 +1,8 @@
 export class AppSettings {
-    /* === HTTP Constants === */
+    /* === App Constants === */
+    public static pageTitle = "NowForum - Angular 9.1"
 
+    /* === HTTP Constants === */
     public static apiHost = "https://localhost:5001/";
 
     public static headers = {
